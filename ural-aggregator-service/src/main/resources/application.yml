@@ -1,0 +1,17 @@
+server:
+  port: ${SERVER_PORT}
+
+spring:
+  application:
+    name: ural-aggregator
+    version: @project.version@
+
+logging:
+  level:
+    root: ${LOGGING_LEVEL_ROOT}
+    org:
+      springframework: INFO
+      hibernate: INFO
+      apache:
+        tomcat:
+          util: WARN
