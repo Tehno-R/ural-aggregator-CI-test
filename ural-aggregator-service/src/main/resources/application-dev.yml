@@ -3,8 +3,16 @@ server:
 
 spring:
   application:
-    name: ural-cargo
+    name: ural-aggregator
     version: @project.version@
+
+proxy:
+  cargo:
+    url: http://localhost:10903
+  users:
+    url: http://localhost:10904
+  auth:
+    url: http://localhost:10901
 
 logging:
   level:

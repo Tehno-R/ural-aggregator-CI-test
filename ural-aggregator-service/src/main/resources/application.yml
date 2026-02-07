@@ -6,6 +6,14 @@ spring:
     name: ural-aggregator
     version: @project.version@
 
+proxy:
+  cargo:
+    url: ${PROXY_CARGO_URL}
+  users:
+    url: ${PROXY_USERS_URL}
+  auth:
+    url: ${PROXY_AUTH_URL}
+
 logging:
   level:
     root: ${LOGGING_LEVEL_ROOT}
