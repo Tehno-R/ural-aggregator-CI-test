@@ -7,7 +7,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import ural.ru.properties.proxy.AuthProperty;
 
-@Service
+import java.net.URI;
+
+@Service("authProxyService")
 public class AuthProxyService extends ProxyService {
 
     protected AuthProxyService(RestTemplate restTemplate, AuthProperty authProperty) {
@@ -16,6 +18,7 @@ public class AuthProxyService extends ProxyService {
 
     @Override
     public ResponseEntity<?> processProxyRequest(byte[] body, HttpMethod method, HttpServletRequest request) {
-        return null;
+        URI uri = buildURI(request);
+        return sendRequest(uri, body, method, request);
     }
 }

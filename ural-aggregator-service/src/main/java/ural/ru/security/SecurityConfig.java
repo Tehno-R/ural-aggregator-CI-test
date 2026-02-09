@@ -35,8 +35,15 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class SecurityConfig {
 
-    private static final String[] SWAGGER = {"/swagger-ui/**", "/v3/**"};
-    private static final String[] ACTUATOR = {"/actuator/**"};
+    private static final String[] PUBLIC_ENDPOINTS = {
+            "/swagger-ui/**",
+            "/v3/**",
+            "/actuator/**",
+            "/api/auth/login",
+            "/api/auth/refresh",
+            "/api/auth/logout",
+            "/api/auth/logout/all",
+    };
 
     private final ExceptionFilterHandler exceptionFilterHandler;
 
@@ -109,9 +116,7 @@ public class SecurityConfig {
     }
 
     private void authorizeHttpRequests(AbstractRequestMatcherRegistry<AuthorizeHttpRequestsConfigurer<HttpSecurity>.AuthorizedUrl> auth) {
-        String[] requestMatchersToPermit = ArrayUtils.addAll(SWAGGER, ACTUATOR);
-
-        auth.requestMatchers(requestMatchersToPermit).permitAll()
+        auth.requestMatchers(PUBLIC_ENDPOINTS).permitAll()
                 .anyRequest()
                 .authenticated();
     }
