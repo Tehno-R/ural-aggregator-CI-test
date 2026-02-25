@@ -1,6 +1,7 @@
 package ural.ru.controllers;
 
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.Getter;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,7 +12,8 @@ import java.util.Map;
 @RestController
 public abstract class AbstractCommonController {
 
-    protected final ProxyService proxyService;
+    @Getter
+    private final ProxyService proxyService;
 
     protected AbstractCommonController(Map<String, ProxyService> proxyServiceMap) {
         String name = getProxyServiceName();

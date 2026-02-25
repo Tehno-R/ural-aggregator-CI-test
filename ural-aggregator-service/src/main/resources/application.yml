@@ -5,6 +5,11 @@ spring:
   application:
     name: ural-aggregator
     version: @project.version@
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${ISSUER_URI}
 
 proxy:
   cargo:

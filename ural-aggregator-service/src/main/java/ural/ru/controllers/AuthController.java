@@ -21,37 +21,42 @@ public class AuthController extends AbstractCommonController {
 
     @PostMapping("/login")
     ResponseEntity<?> login(
-            @RequestBody(required = false) byte [] body,
+            @RequestBody(required = false) byte[] body,
             HttpMethod method,
             HttpServletRequest request
     ) {
-        return proxyService.processProxyRequest(body, method, request);
+        return processProxyRequest(body, method, request);
     }
 
     @PostMapping("/refresh")
     ResponseEntity<?> refresh(
-            @RequestBody(required = false) byte [] body,
+            @RequestBody(required = false) byte[] body,
             HttpMethod method,
             HttpServletRequest request
     ) {
-        return proxyService.processProxyRequest(body, method, request);
+        return processProxyRequest(body, method, request);
     }
 
     @PostMapping("/logout")
     ResponseEntity<?> logout(
-            @RequestBody(required = false) byte [] body,
+            @RequestBody(required = false) byte[] body,
             HttpMethod method,
             HttpServletRequest request
     ) {
-        return proxyService.processProxyRequest(body, method, request);
+        return processProxyRequest(body, method, request);
     }
 
     @PostMapping("/logout/all")
     ResponseEntity<?> logoutAll(
-            @RequestBody(required = false) byte [] body,
+            @RequestBody(required = false) byte[] body,
             HttpMethod method,
             HttpServletRequest request
     ) {
+        return processProxyRequest(body, method, request);
+    }
+
+    private ResponseEntity<?> processProxyRequest(byte[] body, HttpMethod method, HttpServletRequest request) {
+        var proxyService = getProxyService();
         return proxyService.processProxyRequest(body, method, request);
     }
 

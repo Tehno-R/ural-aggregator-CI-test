@@ -22,8 +22,9 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public abstract class ProxyService {
 
-    protected final RestTemplate restTemplate;
-    protected final ProxyProperty proxyProperty;
+    private final RestTemplate restTemplate;
+
+    private final ProxyProperty proxyProperty;
 
     public abstract ResponseEntity<?> processProxyRequest(byte[] body, HttpMethod method, HttpServletRequest request);
 

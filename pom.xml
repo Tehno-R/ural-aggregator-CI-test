@@ -17,6 +17,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>ural-aggregator-service</module>
+        <module>ural-security-core</module>
     </modules>
 
     <properties>
@@ -24,10 +25,22 @@
         <test.plugins.version>3.2.5</test.plugins.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <jsonwebtoken.version>0.11.5</jsonwebtoken.version>
+        <ural-security-core.version>1.0-SNAPSHOT</ural-security-core.version>
+        <ural-exception-starter.version>1.7-SNAPSHOT</ural-exception-starter.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>ural-security-core</artifactId>
+                <version>${ural-security-core.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>ural-exception-starter</artifactId>
+                <version>${ural-exception-starter.version}</version>
+            </dependency>
             <dependency>
                 <groupId>io.jsonwebtoken</groupId>
                 <artifactId>jjwt-api</artifactId>
