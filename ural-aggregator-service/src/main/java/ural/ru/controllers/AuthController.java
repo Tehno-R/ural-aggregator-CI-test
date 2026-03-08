@@ -25,7 +25,7 @@ public class AuthController extends AbstractCommonController {
             HttpMethod method,
             HttpServletRequest request
     ) {
-        return processProxyRequest(body, method, request);
+        return sendAndReceive(body, method, request);
     }
 
     @PostMapping("/refresh")
@@ -34,7 +34,7 @@ public class AuthController extends AbstractCommonController {
             HttpMethod method,
             HttpServletRequest request
     ) {
-        return processProxyRequest(body, method, request);
+        return sendAndReceive(body, method, request);
     }
 
     @PostMapping("/logout")
@@ -43,7 +43,7 @@ public class AuthController extends AbstractCommonController {
             HttpMethod method,
             HttpServletRequest request
     ) {
-        return processProxyRequest(body, method, request);
+        return sendAndReceive(body, method, request);
     }
 
     @PostMapping("/logout/all")
@@ -52,12 +52,7 @@ public class AuthController extends AbstractCommonController {
             HttpMethod method,
             HttpServletRequest request
     ) {
-        return processProxyRequest(body, method, request);
-    }
-
-    private ResponseEntity<?> processProxyRequest(byte[] body, HttpMethod method, HttpServletRequest request) {
-        var proxyService = getProxyService();
-        return proxyService.processProxyRequest(body, method, request);
+        return sendAndReceive(body, method, request);
     }
 
     @Override
