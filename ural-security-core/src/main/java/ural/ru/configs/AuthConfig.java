@@ -3,6 +3,7 @@ package ural.ru.configs;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
@@ -13,6 +14,7 @@ import org.springframework.web.servlet.HandlerExceptionResolver;
 import ural.ru.converters.AuthConverter;
 import ural.ru.converters.JwtConverter;
 import ural.ru.filters.ExceptionFilterHandler;
+import ural.ru.services.NoVerifyJwtDecoder;
 import ural.ru.services.RoleSecurityService;
 
 import static org.springframework.core.Ordered.LOWEST_PRECEDENCE;
@@ -70,6 +72,15 @@ public class AuthConfig {
             HandlerExceptionResolver resolver
     ) {
         return new ExceptionFilterHandler(resolver);
+    }
+
+    @Bean
+    @ConditionalOnProperty(
+            name = "security.jwt.custom-decoder",
+            havingValue = "true"
+    )
+    public NoVerifyJwtDecoder noVerifyJwtDecoder() {
+        return new NoVerifyJwtDecoder();
     }
 
 }

@@ -11,6 +11,10 @@ spring:
         jwt:
           issuer-uri: ${ISSUER_URI}
 
+security:
+  jwt:
+    custom-decoder: false
+
 proxy:
   cargo:
     url: ${PROXY_CARGO_URL}

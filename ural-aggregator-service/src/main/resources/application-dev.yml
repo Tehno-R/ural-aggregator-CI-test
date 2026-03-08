@@ -11,6 +11,10 @@ spring:
         jwt:
           issuer-uri: http://localhost:18081/realms/ural
 
+security:
+  jwt:
+    custom-decoder: false
+
 proxy:
   cargo:
     url: http://localhost:10903
