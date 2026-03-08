@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import ural.ru.controllers.AbstractCommonController;
 import ural.ru.services.proxy.ProxyService;
@@ -19,21 +20,25 @@ public class CargoController extends AbstractCommonController {
         super(proxyServiceMap);
     }
 
+    @PreAuthorize("hasAnyRole('USER')")
     @PostMapping
     public ResponseEntity<?> create(byte[] body, HttpMethod method, HttpServletRequest request) {
         return sendAndReceive(body, method, request);
     }
 
+    @PreAuthorize("hasAnyRole('USER,ADMIN')")
     @PutMapping("/{id}")
     public ResponseEntity<?> update(byte[] body, HttpMethod method, HttpServletRequest request) {
         return sendAndReceive(body, method, request);
     }
 
+    @PreAuthorize("hasAnyRole('URAL_ANY')")
     @GetMapping
     public ResponseEntity<?> getPaginatedList(byte[] body, HttpMethod method, HttpServletRequest request) {
         return sendAndReceive(body, method, request);
     }
 
+    @PreAuthorize("hasAnyRole('USER,ADMIN,UNDERWRITER')")
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(byte[] body, HttpMethod method, HttpServletRequest request) {
         return sendAndReceive(body, method, request);
