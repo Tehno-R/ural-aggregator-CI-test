@@ -51,11 +51,11 @@
                 <artifactId>ural-security-core</artifactId>
                 <version>${project.version}</version>
             </dependency>
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>ural-exception-starter</artifactId>
-                <version>${ural-exception-starter.version}</version>
-            </dependency>
+	         <dependency>
+	           <groupId>ural</groupId>
+	           <artifactId>ural-exception-starter</artifactId>
+	           <version>1.5-SNAPSHOT</version>
+	         </dependency>
             <dependency>
                 <groupId>io.jsonwebtoken</groupId>
                 <artifactId>jjwt-api</artifactId>
