@@ -9,6 +9,13 @@
         <url>https://maven.pkg.github.com/Tehno-R/ural-common-starter-v2-CI-test</url>
       </repository>
     </repositories>
+
+    <distributionManagement>
+      <repository>
+        <id>github</id>
+        <url>https://maven.pkg.github.com/Tehno-R/ural-aggregator-CI-test</url>
+      </repository>
+    </distributionManagement>
          
     <parent>
         <groupId>org.springframework.boot</groupId>
