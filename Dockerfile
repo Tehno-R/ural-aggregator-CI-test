@@ -1,4 +1,4 @@
-FROM container-registry.oracle.com/java/jre:21
+FROM eclipse-temurin:21-jre
 
 WORKDIR /app
 COPY ural-aggregator-service/target/*.jar service.jar
