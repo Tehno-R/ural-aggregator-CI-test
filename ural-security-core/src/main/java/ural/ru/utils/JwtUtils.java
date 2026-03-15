@@ -3,6 +3,7 @@ package ural.ru.utils;
 import org.jspecify.annotations.NonNull;
 import org.jspecify.annotations.Nullable;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import ural.ru.enums.UserRole;
@@ -14,9 +15,7 @@ import java.util.Optional;
 
 public class JwtUtils {
 
-    private static final String USER_UUID_KEY = "user_uuid";
-
-    private static final String ROLES_KEY = "roles";
+    private static final String USER_UUID_KEY = "uuid";
 
     private static final String EMAIL_KEY = "email";
 
@@ -28,7 +27,7 @@ public class JwtUtils {
         Jwt jwt = getToken(authentication);
         return UserPrincipals.builder()
                 .uuid(getClaim(jwt, USER_UUID_KEY, String.class))
-                .roles(getRoles(jwt))
+                .roles(getRoles(authentication))
                 .email(getClaim(jwt, EMAIL_KEY, String.class))
                 .build();
     }
@@ -48,11 +47,13 @@ public class JwtUtils {
     }
 
     @NonNull
-    private static List<UserRole> getRoles(@Nullable Jwt jwt) {
-        List<Object> roles = getClaim(jwt, ROLES_KEY, List.class);
-        return roles.stream()
-                .filter(String.class::isInstance)
-                .map(String.class::cast)
+    private static List<UserRole> getRoles(@Nullable Authentication authentication) {
+        if (authentication == null) {
+            return List.of();
+        }
+
+        return authentication.getAuthorities().stream()
+                .map(GrantedAuthority::getAuthority)
                 .map(UserRole::valueOf)
                 .toList();
     }

@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class AuthConverter implements Converter<Jwt, Collection<GrantedAuthority>> {
 
-    private static final String PREFIX_ROLE = "URAL";
+    private static final String PREFIX_ROLE = "URAL_";
 
     private static final String DEFAULT_ROLE = "URAL_ANY";
 
