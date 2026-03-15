@@ -3,6 +3,20 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <repositories>
+      <repository>
+        <id>github</id>
+        <url>https://maven.pkg.github.com/Tehno-R/*</url>
+      </repository>
+    </repositories>
+
+    <distributionManagement>
+      <repository>
+        <id>github</id>
+        <url>https://maven.pkg.github.com/Tehno-R/ural-aggregator-CI-test</url>
+      </repository>
+    </distributionManagement>
+         
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -37,11 +51,11 @@
                 <artifactId>ural-security-core</artifactId>
                 <version>${project.version}</version>
             </dependency>
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>ural-exception-starter</artifactId>
-                <version>${ural-exception-starter.version}</version>
-            </dependency>
+	         <dependency>
+	           <groupId>ural</groupId>
+	           <artifactId>ural-exception-starter</artifactId>
+	           <version>1.5-SNAPSHOT</version>
+	         </dependency>
             <dependency>
                 <groupId>io.jsonwebtoken</groupId>
                 <artifactId>jjwt-api</artifactId>
